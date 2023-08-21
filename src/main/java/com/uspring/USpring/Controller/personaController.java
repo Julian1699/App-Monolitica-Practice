@@ -51,7 +51,7 @@ public class personaController {
 
     @GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable (name = "id") Long id){
-        Persona persona = personaService.getById(id);
+        personaService.getById(id);
         personaService.deletePersona(id);
         return "redirect:/";
     }

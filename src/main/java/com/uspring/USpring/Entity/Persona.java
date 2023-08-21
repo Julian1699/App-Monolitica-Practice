@@ -4,9 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 
 @Entity
 @Data
@@ -18,11 +16,11 @@ public class Persona {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "El nombre no debe estar vacio papi")
+    @NotEmpty(message = "Este campo es obligatorio")
     @Column(name = "nombre")
     private String nombre;
 
-    @NotEmpty(message = "Cual es eja mani, sin apellido?")
+    @NotEmpty(message = "Este campo es obligatorio")
     @Column(name = "apellido")
     private String apellido;
 

@@ -11,6 +11,7 @@
 <a sec:authorize = "hasRole('ROLE_ADMIN')" th:href="@{/agregar}">Crear Persona</a>
 
 <div th:if="${personas != null and !personas.empty}">
+    <br/>
     <table border="1">
         <tr>
             <th>Nombre</th>
