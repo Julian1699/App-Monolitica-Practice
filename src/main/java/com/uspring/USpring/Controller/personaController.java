@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import java.util.List;
 
 @Controller
 @RequestMapping("/")
 public class personaController {
+
     @Autowired
     private personaService personaService;
 
@@ -24,37 +24,41 @@ public class personaController {
     public String inicio(Model model){
         List<Persona> personas = personaService.getAllPersonas();
         model.addAttribute("personas", personas);
+        var saldoTotal = 0D;
+        for(var p: personas){
+            saldoTotal += p.getSaldo();
+        }
+        model.addAttribute("saldoTotal", saldoTotal);
+        model.addAttribute("totalClientes", personas.size());
         return "index";
     }
 
     @GetMapping("/agregar")
     public String agregar(Model model,Persona persona){
         model.addAttribute("persona",persona);
-        return "agregar";
+        return "modificar";
     }
 
     @PostMapping("/guardar")
     public String guardar(@Validated Persona persona, Errors errors){
         if(errors.hasErrors()){
-            return  "agregar";
+            return  "modificar";
         }
         personaService.savePersona(persona);
         return "redirect:/";
     }
 
     @GetMapping("/editar/{id}")
-    public String editar(@PathVariable (name="id") Long id, Persona persona, Model model){
+    public String modificar(@PathVariable (name="id") Long id, Persona persona, Model model){
         persona = personaService.getById(id);
         model.addAttribute("persona", persona);
-        return "editar";
+        return "modificar";
     }
 
-    @GetMapping("/eliminar/{id}")
-    public String eliminar(@PathVariable (name = "id") Long id){
-        personaService.getById(id);
-        personaService.deletePersona(id);
+    @GetMapping("/eliminar")
+    public String eliminar(Persona persona){
+        personaService.deletePersona(persona);
         return "redirect:/";
     }
-
 
 }

@@ -1,34 +1,37 @@
 package com.uspring.USpring.Entity;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-
-@Entity
+import javax.validation.constraints.NotNull;
+import lombok.Data;
 @Data
+@Entity
 @Table(name = "persona")
 public class Persona {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idPersona;
 
-    @NotEmpty(message = "Este campo es obligatorio")
+    @NotEmpty
     @Column(name = "nombre")
     private String nombre;
 
-    @NotEmpty(message = "Este campo es obligatorio")
+    @NotEmpty
     @Column(name = "apellido")
     private String apellido;
 
     @NotEmpty
-    @Email(message = "El email debe ser válido")
+    @Email
     @Column(name = "email")
     private String email;
 
     @Column(name = "telefono")
     private String telefono;
+
+    @NotNull
+    @Column(name = "saldo")
+    private Double saldo;
+
 }

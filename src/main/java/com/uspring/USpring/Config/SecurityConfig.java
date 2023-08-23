@@ -16,6 +16,14 @@ public class SecurityConfig  {
 
     @Autowired
     private UserDetailsService userDetailsService;
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
+    public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception{
+        build.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -36,13 +44,5 @@ public class SecurityConfig  {
         return http.build();
     }
 
-    public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception{
-        build.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
-
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
 }
 

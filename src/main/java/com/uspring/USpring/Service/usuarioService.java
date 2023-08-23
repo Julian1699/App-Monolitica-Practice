@@ -11,22 +11,19 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.uspring.USpring.Repository.usuarioRepository;
-
 import java.util.ArrayList;
-
 
 @Service("userDetailsService")
 public class usuarioService implements UserDetailsService{
 
     @Autowired
-    private usuarioRepository usuarioRepository;
+    private usuarioRepository usuarioDao;
     
     @Override
     @Transactional(readOnly=true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepository.findByUsername(username);
+        Usuario usuario = usuarioDao.findByUsername(username);
         
         if(usuario == null){
             throw new UsernameNotFoundException(username);

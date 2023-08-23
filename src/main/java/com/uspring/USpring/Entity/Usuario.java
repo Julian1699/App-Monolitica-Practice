@@ -1,18 +1,18 @@
 package com.uspring.USpring.Entity;
 
-import lombok.Data;
-
+import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.List;
+import lombok.Data;
 
 @Entity
 @Data
+@Table(name="usuario")
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idUsuario;
 
     @NotEmpty
     @Column(name = "username")
@@ -22,7 +22,8 @@ public class Usuario {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany
+    @JoinColumn(name="id_usuario")
     private List<Rol> roles;
 
 }

@@ -31,8 +31,8 @@ public class personaService {
         return personaRepository.save(Persona);
     }
     @Transactional
-    public void deletePersona(long id){
-        personaRepository.deleteById(id);
+    public void deletePersona(Persona persona){
+        personaRepository.delete(persona);
     }
     @Transactional(readOnly = true)
     public Persona getById(Long id){ return personaRepository.findById(id).get(); }
