@@ -14,7 +14,9 @@ Usuarios en Memoria y Base de Datos: Explora distintos enfoques para autenticaci
 Este repositorio contiene varias ramas que exploran diferentes aspectos de la aplicación:
 
 main: Contiene la versión estable de la aplicación con las operaciones básicas de gestión de información de personas.
+
 users_in_memory: Introduce autenticación de usuarios empleando almacenamiento en memoria.
+
 users_in_db: Implementa autenticación con usuarios gestionados en una base de datos.
 
 Si estás interesado en experimentar con distintos enfoques para autenticación y roles, te recomendamos explorar estas ramas.
